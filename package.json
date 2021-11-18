@@ -1,0 +1,19 @@
+{
+  "name": "tailwind-course",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.19"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "vite": "^2.6.13"
+  }
+}

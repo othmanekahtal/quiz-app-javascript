@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/tailwind.css"/>
+    <script src="script.js" type="module"></script>
+    <title>Quiz App</title>
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+<div class="shadow-2xl rounded-3xl bg-white w-1/2">
+    <div class="px-4 py-8 w-full flex flex-col justify-around h-56" id="intro-container">
+        <h1 class="text-center py-4 uppercase text-4xl font-bold text-gray-900">Quiz App</h1>
+        <div class="flex justify-center items-center space-x-2">
+            <button class="btn btn-primary" id="start">start</button>
+            <button class="btn btn-secondary" id="high_score">High score</button>
+        </div>
+    </div>
+    <!--we need to test-->
+    <!--    <div class="hidden p-4 absolute w-full flex flex-col justify-around h-full">-->
+    <div class="hidden py-4 px-8 w-full flex flex-col justify-between" id="question-container">
+        <!--todo : add dynamic score here-->
+        <div id="score"
+             class="ml-auto font-bold text-white rounded-full bg-indigo-500 text-2xl w-12 h-12 flex justify-center items-center">
+            12
+        </div>
+        <!--todo : add dynamic question here-->
+        <div id="question" class="font-bold text-gray-900 text-2xl text-center py-8 transform uppercase transition hover:-translate-x-2 hover:-translate-y-2">
+
+        </div>
+        <!--todo : add dynamic answers here-->
+        <div id="answers" class="space-y-2 flex flex-col justify-stretch">
+
+        </div>
+        <div id="progress" class="mt-6 mx-auto bg-white shadow-sm overflow-hidden w-32 h-4 rounded-3xl border-gray-200 border-2	">
+            <span class="bg-indigo-500 h-full block rounded-3xl w-0">
+            </span>
+        </div>
+    </div>
+    <div class="hidden py-4 px-8 w-full flex flex-col justify-between" id="result-container">
+        <h2 class="text-center font-bold my-4 uppercase text-gray-900 text-4xl">Your result is :</h2>
+        <p class="text-center font-thin my-4 text-3xl text-gray-400"><span id="result_percentage"></span>%</p>
+        <img id="emotion-emoji" src="" alt="" class="w-20 h-20 object-cover mx-auto mb-2">
+    </div>
+</div>
+</body>
+
+</html>
