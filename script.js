@@ -1,11 +1,10 @@
 import data from "./quizData";
 import _ from "lodash";
+import swal from "sweetalert";
+
 // selectors :
 const question_block = document.getElementById('question');
-const start_btn = document.getElementById('start');
 const score_block = document.getElementById('score');
-const answers_block = document.getElementById('answers');
-const high_score_btn = document.getElementById('high_score')
 const intro_container = document.getElementById('intro-container');
 const question_container = document.getElementById('question-container');
 const result_container = document.getElementById('result-container');
@@ -19,10 +18,14 @@ let current = 0;
 let counter = 0;
 let count;
 let currentQuestion;
+let result_percentage = 0;
 // application :
 application();
+
 function verifyAnswers(question) {
-    [...answers_block.children].forEach(function (element, i, arr) {
+    [...answers.children].forEach(function (element, i, arr) {
+        counter = 0;
+        progress.style.width = null;
         element.addEventListener('click', function (e) {
             let answer = this.textContent;
             arr.forEach(el => el.style.pointerEvents = 'none');
@@ -37,7 +40,7 @@ function verifyAnswers(question) {
             }
             setTimeout(function () {
                 nextQuestion();
-            }, 500)
+            }, 250)
             // add condition here
         }, true);
     })
@@ -56,7 +59,7 @@ function renderQuestion(question) {
     question_block.innerHTML = question.get('question');
     // render answers :
     getQuestions(question).forEach(element => {
-        answers_block.insertAdjacentHTML('beforeend', question_template.replace('{{question}}', question.get(element)))
+        answers.insertAdjacentHTML('beforeend', question_template.replace('{{question}}', question.get(element)))
     })
     // render scores :
     score_block.textContent = "" + score;
@@ -64,7 +67,6 @@ function renderQuestion(question) {
 }
 
 function nextQuestion() {
-    counter = 0;
     if (questions.length - 1 <= current) {
         question_container.classList.add('hidden')
         result_container.classList.remove('hidden')
@@ -72,7 +74,7 @@ function nextQuestion() {
         render_result();
         return
     }
-    answers_block.innerHTML = question_block.innerText = "";
+    answers.innerHTML = question_block.innerText = "";
     current++;
     currentQuestion = questions[current];
     renderQuestion(currentQuestion);
@@ -80,7 +82,7 @@ function nextQuestion() {
 
 function render_result() {
     clearInterval(count);
-    const result_percentage = ~~((score / questions.length) * 100);
+    result_percentage = ~~((score / questions.length) * 100);
     const result_percentage_container = document.getElementById('result_percentage');
     result_percentage_container.textContent = "" + result_percentage;
     result_container.classList.remove('hidden');
@@ -104,13 +106,44 @@ function counterSkip() {
         nextQuestion();
     }
 }
+
+function saveScore() {
+    result_container.classList.add('hidden');
+    save_score.classList.remove('hidden');
+}
+
 function application() {
 // we have three phase in application : intro-question-result
     questions.sort(() => .5 - Math.random());
-    start_btn.onclick = () => {
+    start.onclick = () => {
         intro_container.classList.add('hidden');
         renderQuestion(questions[current]);
         question_container.classList.remove('hidden');
         count = setInterval(counterSkip, 1000);
+    }
+    reload.onclick = cancel.onclick = () => location.reload();
+    save.onclick = () => saveScore();
+    submit.onclick = () => {
+        let input = input_score.value.trim();
+        if (input === "") {
+            error_input.textContent = 'you need to fill input !'
+        }
+        let lastData = localStorage.getItem('scores') ? JSON.parse(localStorage.getItem('scores')) : [];
+        lastData.push({
+            name: input,
+            score: result_percentage
+        })
+        localStorage.setItem('scores', JSON.stringify(lastData));
+        swal("saved successfully!", "Your score saved successfully!", "success").then(() => location.reload());
+    }
+    saved_score.onclick = () => {
+        saved_score_container.classList.remove('hidden');
+        intro_container.classList.add('hidden');
+        let content = localStorage.getItem('scores') ?
+            JSON.parse(localStorage.getItem('scores'))
+                .sort((el1, el2) => (+el2.score) - (+el1.score))
+                .map(element => `<div class="bg-white shadow-lg py-2 px-4 cursor-pointer font-semiBold flex justify-between transition text-lg hover:bg-gray-100"><span class="font-medium">${element.name}</span><span>${element.score}%</span></div>`).join('') : '<div class="text-center text-2xl text-gray-400 font-thin">No score saved !</div>';
+        saved_score_container.insertAdjacentHTML('beforeend', content);
+        saved_score_container.insertAdjacentHTML('beforeend', '<button class="btn btn-secondary" onclick="location.reload()">cancel</button>');
     }
 }

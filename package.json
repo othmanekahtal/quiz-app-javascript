@@ -13,7 +13,9 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.3.4",
     "lodash": "^4.17.21",
+    "sweetalert": "^2.1.2",
     "vite": "^2.6.13"
   }
 }
