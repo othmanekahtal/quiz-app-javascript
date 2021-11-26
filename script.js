@@ -1,5 +1,7 @@
 import data from "./quizData";
+import users from './users.json';
 import _ from "lodash";
+
 import swal from "sweetalert";
 import './css/tailwind.css'
 import './images/1.png'
@@ -124,6 +126,9 @@ function application() {
         question_container.classList.remove('hidden');
         count = setInterval(counterSkip, 1000);
     }
+    form_login.onsubmit = (e) => {
+        loginForm(e);
+    }
     reload.onclick = cancel.onclick = () => location.reload();
     save.onclick = () => saveScore();
     submit.onclick = () => {
@@ -149,4 +154,38 @@ function application() {
         saved_score_container.insertAdjacentHTML('beforeend', content);
         saved_score_container.insertAdjacentHTML('beforeend', '<button class="btn btn-secondary" onclick="location.reload()">cancel</button>');
     }
+
 }
+// working on login form :
+function loginForm(e) {
+    e.preventDefault();
+    console.log()
+    const creds = Object.fromEntries(new FormData(e.target));
+    let authenticated = false;
+    if (!creds?.username || !creds?.password) {
+        swal({
+            title: "error!",
+            text: "fill required fields!",
+            icon: "error",
+        });
+        return;
+    }
+    for (const user of users) {
+        console.log(user);
+        if (user.username === creds.username && user.password === creds.password) {
+            authenticated = true;
+            break;
+        }
+    }
+    if (authenticated) {
+        login_container.classList.add('hidden');
+        intro_container.classList.remove('hidden')
+    } else {
+        swal({
+            title: 'not authenitcated !',
+            text: "your creds. not correct",
+            icon: "error",
+        })
+    }
+}
+

@@ -5,14 +5,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--    <link rel="stylesheet" href=""/>-->
+    <!--    <link rel="stylesheet" href=""/>-->
     <script src="./script.js" type="module"></script>
     <title>Quiz App</title>
 </head>
 
 <body class="bg-gray-100 flex justify-center items-center h-screen">
 <div class="shadow-2xl rounded-3xl bg-white w-1/2">
-    <div class="px-4 py-8 w-full flex flex-col space-y-4 justify-around h-56" id="intro-container">
+    <div class="py-4 px-8" id="login_container">
+        <h1 class="text-center uppercase text-4xl font-bold text-gray-900">login</h1>
+        <form class="py-4 px-8 w-full space-y-4 flex flex-col justify-between" id="form_login">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    Username
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                       id="username" type="text" name="username" placeholder="Username">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Password
+                </label>
+
+                <!--                <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"-->
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                       id="password" name="password" type="password" placeholder="******************">
+                <p class="hidden text-red-500 text-xs italic">Please choose a password.</p>
+            </div>
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        type="submit">
+                    Sign In
+                </button>
+                <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                    Forgot Password?
+                </a>
+            </div>
+        </form>
+        </div>
+    <div class="hidden px-4 py-8 w-full flex flex-col space-y-4 justify-around h-56" id="intro-container">
         <h1 class="text-center uppercase text-4xl font-bold mb-4 text-gray-900">Quiz App</h1>
         <div class="flex justify-center items-center space-x-2">
             <button class="btn btn-primary" id="start">start</button>
@@ -41,7 +72,7 @@
         </div>
     </div>
     <div class="hidden py-4 px-8 w-full space-y-4 flex flex-col justify-between" id="result-container">
-        <h2 class="text-center font-bold uppercase text-gray-900 text-4xl">Your result is :</h2>
+    <h2 class="text-center font-bold uppercase text-gray-900 text-4xl">Your result is :</h2>
         <p class="text-center font-thin text-3xl text-gray-400"><span id="result_percentage"></span>%</p>
         <img id="emotion-emoji" src="images/1.png" alt="" class="w-20 h-20 object-cover mx-auto">
         <div class="flex justify-center items-center space-x-2">
@@ -58,7 +89,8 @@
             <button class="btn btn-secondary" id="cancel">Cancel</button>
         </div>
     </div>
-    <div class="hidden p-8 w-full space-y-4 flex flex-col justify-between max-h-104 overflow-y-auto" id="saved_score_container">
+    <div class="hidden p-8 w-full space-y-4 flex flex-col justify-between max-h-104 overflow-y-auto"
+         id="saved_score_container">
         <h2 class="text-center font-bold uppercase text-gray-900 text-4xl mb-4">Saved Score :</h2>
     </div>
 </div>
