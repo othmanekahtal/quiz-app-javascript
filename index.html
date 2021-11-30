@@ -5,13 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--    <link rel="stylesheet" href=""/>-->
-    <script src="./script.js" type="module"></script>
+    <link rel="icon" href="images/SVG/logo.svg"/>
+    <script src="scripts/script.js" type="module"></script>
     <title>Quiz App</title>
 </head>
 
 <body class="bg-gray-100 flex justify-center items-center h-screen">
-<div class="shadow-2xl rounded-3xl bg-white w-1/2">
+<div class="fixed shadow-lg top-12 right-12 btn w-12 h-12 bg-indigo-500 text-white rounded-full p-0 flex items-center justify-center" id="admin_gear">
+    <svg class="w-6 h-6 fill-current text-white block">
+        <use href="./images/sprite.svg#icon-cog"></use>
+    </svg>
+</div>
+<div class="shadow-2xl rounded-3xl bg-white w-1/2" id="container_quiz">
     <div class="px-4 py-8 w-full flex flex-col space-y-4 justify-around h-56" id="intro-container">
         <h1 class="text-center uppercase text-4xl font-bold mb-4 text-gray-900">Quiz App</h1>
         <div class="flex justify-center items-center space-x-2">
@@ -32,7 +37,6 @@
         </div>
         <!--todo : add dynamic answers here-->
         <div id="answers" class="space-y-2 flex flex-col justify-stretch">
-
         </div>
         <div id="progress"
              class="mt-6 mx-auto bg-white shadow-sm overflow-hidden w-32 h-4 rounded-3xl border-gray-200 border-2	">
@@ -58,9 +62,130 @@
             <button class="btn btn-secondary" id="cancel">Cancel</button>
         </div>
     </div>
-    <div class="hidden p-8 w-full space-y-4 flex flex-col justify-between max-h-104 overflow-y-auto" id="saved_score_container">
+    <div class="hidden p-8 w-full space-y-4 flex flex-col justify-between max-h-104 overflow-y-auto"
+         id="saved_score_container">
         <h2 class="text-center font-bold uppercase text-gray-900 text-4xl mb-4">Saved Score :</h2>
     </div>
+    <div class="hidden py-4 px-8" id="login_container">
+        <h1 class="text-center uppercase text-4xl font-bold mt-4 text-gray-900">welcome again</h1>
+        <form class="py-4 px-8 w-full space-y-4 flex flex-col justify-between" id="form_login">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    Username
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                       id="username" type="text" name="username" placeholder="Username">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Password
+                </label>
+
+                <!--                <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"-->
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                       id="password" name="password" type="password" placeholder="******************">
+                <p class="hidden text-red-500 text-xs italic">Please choose a password.</p>
+            </div>
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        type="submit">
+                    Sign In
+                </button>
+                <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                    Forgot Password?
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="admin_dashboard" class="hidden bg-white h-full w-full grid grid-cols-dashboard-column-guide grid-rows-dashboard-row-guide">
+    <aside class="row-span-full col-span-1 flex flex-col py-4 px-6 bg-indigo-500 justify-between sidebar shadow-lg">
+        <div class="logo w-full">
+            <svg class="fill-current w-20 h-20 object-fit mx-auto">
+                <use href="images/SVG/sprite.svg#logo"></use>
+            </svg>
+        </div>
+        <ul class="flex flex-col gap-8">
+            <li>
+                <svg>
+                    <use href="images/SVG/sprite.svg#dashboard"></use>
+                </svg>
+                <span>Dashboard</span>
+            </li>
+            <li>
+                <svg>
+                    <use href="images/SVG/sprite.svg#messages"></use>
+                </svg>
+                <span>message</span>
+            </li>
+            <li>
+                <svg>
+                    <use href="images/SVG/sprite.svg#test"></use>
+                </svg>
+                <span>assignment</span>
+            </li>
+            <li>
+                <svg>
+                    <use href="images/SVG/sprite.svg#group"></use>
+                </svg>
+                <span>Students</span>
+            </li>
+            <li>
+                <svg>
+                    <use href="images/SVG/sprite.svg#subject"></use>
+                </svg>
+                <span>Subjects</span>
+            </li>
+            <li>
+                <svg class="fill-current text-white w-12 h-12">
+                    <use href="images/SVG/sprite.svg#analysis"></use>
+                </svg>
+                Statistics
+            </li>
+        </ul>
+        <div class="logout flex items-center text-white bg-indigo-400 rounded-lg cursor-pointer py-1 px-2 hover:bg-indigo-600 active:bg-indigo-700 transition">
+            <!--            todo : dynamic source-->
+            <img src="https://www.pngkey.com/png/full/65-658471_happy-man-png.png"
+                 class="rounded-full w-12 h-12 object-cover" alt="man face">
+            <div>
+                <!--            todo : dynamic name-->
+                <div class="name">
+                    othmane kahtal
+                </div>
+                <!--            todo : dynamic email-->
+                <div class="email text-sm">
+                    contact@othmane.me
+                </div>
+            </div>
+        </div>
+    </aside>
+    <header class="flex justify-end px-8 py-6">
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <svg>
+                        <use href="images/SVG/sprite.svg#messages"></use>
+                    </svg>
+                </li>
+                <li>
+                    <svg>
+                        <use href="images/SVG/sprite.svg#notification"></use>
+                    </svg>
+                </li>
+                <li>
+                    <svg>
+                        <use href="images/SVG/sprite.svg#setting"></use>
+                    </svg>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2 class="text-gray-900">
+            <!--            todo : you need to add welcome message here-->
+            <!--            add static version-->
+        </h2>
+    </main>
 </div>
 </body>
 
