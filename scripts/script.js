@@ -1,10 +1,11 @@
-import data from "./quizData";
+import data from "../json/quizData";
+// import users from '../json/users.json';
 import _ from "lodash";
 import swal from "sweetalert";
-import './css/tailwind.css'
-import './images/1.png'
-import './images/2.png'
-import './images/3.png'
+import '../css/tailwind.css'
+import '../images/1.png'
+import '../images/2.png'
+import '../images/3.png'
 // selectors :
 const question_block = document.getElementById('question');
 const score_block = document.getElementById('score');
@@ -124,6 +125,16 @@ function application() {
         question_container.classList.remove('hidden');
         count = setInterval(counterSkip, 1000);
     }
+    form_login.onsubmit = (e) => {
+        loginForm(e);
+    }
+    admin_gear.addEventListener('click', function(e){
+        this.classList.add("hidden");
+        intro_container.classList.add('hidden');
+        // admin_dashboard.classList.remove("hidden");
+        // container_quiz.classList.add('hidden')
+        login_container.classList.remove('hidden')
+    })
     reload.onclick = cancel.onclick = () => location.reload();
     save.onclick = () => saveScore();
     submit.onclick = () => {
@@ -148,5 +159,31 @@ function application() {
                 .map(element => `<div class="bg-white shadow-lg py-2 px-4 cursor-pointer font-semiBold flex justify-between transition text-lg hover:bg-gray-100"><span class="font-medium">${element.name}</span><span>${element.score}%</span></div>`).join('') : '<div class="text-center text-2xl text-gray-400 font-thin">No score saved !</div>';
         saved_score_container.insertAdjacentHTML('beforeend', content);
         saved_score_container.insertAdjacentHTML('beforeend', '<button class="btn btn-secondary" onclick="location.reload()">cancel</button>');
+    }
+}
+
+// working on login form :
+function loginForm(e) {
+    e.preventDefault();
+    console.log()
+    const creds = Object.fromEntries(new FormData(e.target));
+    let authenticated = false;
+    if (!creds?.username || !creds?.password) {
+        swal({
+            title: "error!",
+            text: "fill required fields!",
+            icon: "error",
+        });
+        return;
+    }
+    if (authenticated) {
+        login_container.classList.add('hidden');
+        intro_container.classList.remove('hidden')
+    } else {
+        swal({
+            title: 'not authenitcated !',
+            text: "your creds. not correct",
+            icon: "error",
+        })
     }
 }
