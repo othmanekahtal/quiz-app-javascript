@@ -1,0 +1,78 @@
+{
+  "admins": [
+    {
+      "username": "mi",
+      "password": "1234"
+    }
+  ],
+  "coach": [
+    {
+      "username": "othmane",
+      "password": "password"
+    }
+  ],
+  "question": [
+    {
+      "question": "css is the standard of",
+      "type": "single option / multi option",
+      "score": 7,
+      "level": "easy",
+      "answers": [
+        "Cascading Style Sheet",
+        "Cascading Style",
+        "Cascading"
+      ],
+      "correct": [
+        "Hyper Text Markup Language"
+      ],
+      "id": 2
+    },
+    {
+      "question": "css is the standard of",
+      "type": "single option / multi option",
+      "score": "",
+      "level": "easy",
+      "answers": [
+        "Cascading Style Sheet",
+        "Cascading Style",
+        "Cascading"
+      ],
+      "correct": [
+        "Hyper Text Markup Language"
+      ],
+      "id": 3
+    }
+  ],
+  "level": [
+    {
+      "level": "easy",
+      "maxScore": 15,
+      "minScore": 5
+    },
+    {
+      "level": "medium",
+      "maxScore": 16,
+      "minScore": 20
+    },
+    {
+      "level": "hard",
+      "maxScore": 21,
+      "minScore": 30
+    }
+  ],
+  "subject": [],
+  "students": [
+    {
+      "username": "othmane",
+      "password": "password"
+    },
+    {
+      "username": "test",
+      "password": "test"
+    },
+    {
+      "username": "user",
+      "password": "password"
+    }
+  ]
+}
