@@ -1,16 +1,19 @@
-class Formator {
-    _authenticated;
-    _formator;
+import {CRUD} from "../CRUD";
+
+export class Formator {
+    #authenticated;
+    #formator;
+
     constructor() {
-        this._formator = new CRUD('http://localhost:3001/coach');
+        this.#formator = new CRUD('http://localhost:3001/coach');
     }
 
     get authentification() {
-        return this._authenticated;
+        return this.#authenticated;
     }
+
     async login(creds) {
-        let response = await this._formator.getSingleByJson(creds);
-        console.log(response);
-        if(!response) alert('wrong data !');
+        let response = await this.#formator.getSingleByJson(creds);
+        this.#authenticated = !!response.length;
     }
 }

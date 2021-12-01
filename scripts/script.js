@@ -6,6 +6,7 @@ import '../css/tailwind.css'
 import '../images/1.png'
 import '../images/2.png'
 import '../images/3.png'
+import {Formator} from "./Formator/Formator";
 // selectors :
 const question_block = document.getElementById('question');
 const score_block = document.getElementById('score');
@@ -117,7 +118,7 @@ function saveScore() {
 }
 
 function application() {
-// we have three phase in application : intro-question-result
+    // we have three phase in application : intro-question-result
     questions.sort(() => .5 - Math.random());
     start.onclick = () => {
         intro_container.classList.add('hidden');
@@ -128,7 +129,7 @@ function application() {
     form_login.onsubmit = (e) => {
         loginForm(e);
     }
-    admin_gear.addEventListener('click', function(e){
+    admin_gear.addEventListener('click', function (e) {
         this.classList.add("hidden");
         intro_container.classList.add('hidden');
         // admin_dashboard.classList.remove("hidden");
@@ -163,7 +164,7 @@ function application() {
 }
 
 // working on login form :
-function loginForm(e) {
+async function loginForm(e) {
     e.preventDefault();
     console.log()
     const creds = Object.fromEntries(new FormData(e.target));
@@ -176,9 +177,13 @@ function loginForm(e) {
         });
         return;
     }
+    let coach = new Formator('http://localhost:3001/coach');
+    await coach.login(creds);
+    authenticated = coach.authentification;
     if (authenticated) {
         login_container.classList.add('hidden');
-        intro_container.classList.remove('hidden')
+        admin_dashboard.classList.remove('hidden');
+        container_quiz.classList.add('hidden');
     } else {
         swal({
             title: 'not authenitcated !',
