@@ -1,11 +1,9 @@
 import {CRUD} from "../CRUD";
 
-export class Formator {
+export class Coach extends CRUD{
     #authenticated;
-    #formator;
-
     constructor() {
-        this.#formator = new CRUD('http://localhost:3001/coach');
+        super('http://localhost:3001/coach');
     }
 
     get authentification() {
@@ -13,7 +11,7 @@ export class Formator {
     }
 
     async login(creds) {
-        let response = await this.#formator.getSingleByJson(creds);
+        let response = await this.getSingleByJson(creds);
         this.#authenticated = !!response.length;
     }
 }

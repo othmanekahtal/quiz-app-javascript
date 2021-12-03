@@ -9,20 +9,20 @@ export class CRUD {
 
     async getSingleByID(id) {
         let response = await fetch(`${this._link}/${id}`, {
-            headers:this._header,
+            headers: this._header,
             method: "get",
         });
         return response.body;
     }
 
     async getSingleByJson(json) {
-        let query=[];
-        for (const [key,value] of Object.entries(json)) {
-            console.log(key,value)
-           query.push(key+"="+value)
+        let query = [];
+        for (const [key, value] of Object.entries(json)) {
+            console.log(key, value)
+            query.push(key + "=" + value)
         }
         let response = await fetch(`${this._link}?${query.join('&')}`, {
-            headers:this._header,
+            headers: this._header,
             method: "get",
         });
         return response.json();
@@ -30,40 +30,35 @@ export class CRUD {
 
     async getAll() {
         let response = await fetch(this._link, {
-            method: "get"
+            method: "get",
+            headers: this._header,
         });
-        if (response.status !== 201) {
-            console.log('error happens');
-        }
-        return response.body;
+        return response.json();
     }
 
     async create(obj) {
         let response = await fetch(this._link, {
             method: "post",
-            body: obj
+            body: obj,
+            headers: this._header,
         });
-        if (response.status !== 201) {
-            console.log('error happens');
-        }
+        return response.json();
     }
 
     async update(id, obj) {
         let response = await fetch(`${this._link}/${id}`, {
             method: "patch",
-            body: obj
+            body: obj,
+            headers: this._header,
         });
-        if (response.status !== 200) {
-            console.log('error happens');
-        }
+        return response.json();
     }
 
     async delete(id) {
         let response = await fetch(`${this._link}/${id}`, {
             method: "delete",
+            headers: this._header,
         });
-        if (response.status !== 203) {
-            console.log('error happens');
-        }
+        return response.json();
     }
 }

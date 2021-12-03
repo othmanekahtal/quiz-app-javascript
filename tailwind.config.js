@@ -4,16 +4,16 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        'dashboard-column-guide':"260px 1fr",
+        'dashboard-column-guide': "260px 1fr",
       },
-      gridTemplateRows:{
-        'dashboard-row-guide':"100px calc(100vh - 100px)",
+      gridTemplateRows: {
+        'dashboard-row-guide': "100px calc(100vh - 100px)",
       }
     },
   },
   variants: {
     extend: {
-      backgroundColor: ['active']
+      backgroundColor: ['active'],
     },
   },
   plugins: [
