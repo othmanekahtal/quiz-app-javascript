@@ -33,13 +33,6 @@
   ],
   "subject": [
     {
-      "id": 1,
-      "parent": "",
-      "title": "programming",
-      "min": 5,
-      "max": 7.5
-    },
-    {
       "id": 2,
       "parent": 1,
       "title": "css",
@@ -53,52 +46,41 @@
             "second option",
             "third option"
           ],
-          "answer": [0],
+          "answer": [
+            0
+          ],
           "level": 1
         },
         {
           "id": 2,
           "question": "What is the Box model in CSS? Which CSS properties are a part of it?",
-          "options": ["padding", "height", "margin", "transition"],
-          "answer": [0, 1, 2],
+          "options": [
+            "padding",
+            "height",
+            "margin",
+            "transition"
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
           "level": 1,
           "type": "multi"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "parent": "",
-      "title": "math",
-      "min": 5,
-      "max": 7.5
-    },
-    {
-      "id": 2,
-      "parent": 3,
-      "title": "algebra",
-      "questions": [
-        {
-          "id": 1,
-          "question": "What is CSS?",
-          "type": "single",
-          "options": [
-            "CSS stands for Cascading Style Sheet.",
-            "second option",
-            "third option"
-          ],
-          "answer": [0],
-          "level": 1
         },
         {
-          "id": 4,
-          "question": "the sum of 12+12?",
-          "options": [25, 24, 23, 21],
-          "level": 2,
-          "answer": [1],
-          "type": "single"
+          "title": "Et aut pariatur Est",
+          "max": "3",
+          "min": "63",
+          "id": 6
         }
       ]
+    },
+    {
+      "title": "Est aut incidunt qu",
+      "max": "63",
+      "min": "36",
+      "id": 3
     }
   ],
   "students": [

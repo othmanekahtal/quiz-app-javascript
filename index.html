@@ -5,218 +5,358 @@
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link href="images/SVG/logo.svg" rel="icon"/>
+    <link href="images/SVG/logo.svg" rel="icon" />
     <script src="scripts/script.js" type="module"></script>
     <title>Quiz App</title>
 </head>
 
 <body class="bg-gray-100 flex justify-center items-center h-screen">
-<div class="hidden fixed shadow-lg top-12 right-12 btn w-12 h-12 bg-indigo-500 text-white rounded-full p-0 flex items-center justify-center"
-     id="admin_gear">
-    <svg class="w-6 h-6 fill-current text-white block">
-        <use href="./images/sprite.svg#icon-cog"></use>
-    </svg>
-</div>
-<div class="hidden shadow-2xl rounded-3xl bg-white w-1/2" id="container_quiz">
-    <div class="px-4 py-8 w-full flex flex-col space-y-4 justify-around h-56" id="intro-container">
-        <h1 class="text-center uppercase text-4xl font-bold mb-4 text-gray-900">Quiz App</h1>
-        <div class="flex justify-center items-center space-x-2">
-            <button class="btn btn-primary" id="start">start</button>
-            <button class="btn btn-secondary" id="saved_score">saved score</button>
-        </div>
+    <div class="fixed shadow-lg top-12 right-12 btn w-12 h-12 bg-indigo-500 text-white rounded-full p-0 flex items-center justify-center"
+        id="admin_gear">
+        <svg class="w-6 h-6 fill-current text-white block">
+            <use href="./images/sprite.svg#icon-cog"></use>
+        </svg>
     </div>
-    <div class="hidden py-4 px-8 w-full space-y-4 flex flex-col mb-4 justify-between" id="question-container">
-        <!--todo : add dynamic score here-->
-        <div class="ml-auto font-bold text-white rounded-full bg-indigo-500 text-2xl w-12 h-12 flex justify-center items-center"
-             id="score">
-            12
+    <div class="shadow-2xl rounded-3xl bg-white w-1/2" id="container_quiz">
+        <div class="px-4 py-8 w-full flex flex-col space-y-4 justify-around h-56" id="intro-container">
+            <h1 class="text-center uppercase text-4xl font-bold mb-4 text-gray-900">Quiz App</h1>
+            <div class="flex justify-center items-center space-x-2">
+                <button class="btn btn-primary" id="start">start</button>
+                <button class="btn btn-secondary" id="saved_score">saved score</button>
+            </div>
         </div>
-        <!--todo : add dynamic question here-->
-        <div class="font-bold text-gray-900 text-2xl text-center transform uppercase transition hover:-translate-x-2 hover:-translate-y-2"
-             id="question">
+        <div class="hidden py-4 px-8 w-full space-y-4 flex flex-col mb-4 justify-between" id="question-container">
+            <!--todo : add dynamic score here-->
+            <div class="ml-auto font-bold text-white rounded-full bg-indigo-500 text-2xl w-12 h-12 flex justify-center items-center"
+                id="score">
+                12
+            </div>
+            <!--todo : add dynamic question here-->
+            <div class="font-bold text-gray-900 text-2xl text-center transform uppercase transition hover:-translate-x-2 hover:-translate-y-2"
+                id="question">
 
-        </div>
-        <!--todo : add dynamic answers here-->
-        <div class="space-y-2 flex flex-col justify-stretch" id="answers">
-        </div>
-        <div class="mt-6 mx-auto bg-white shadow-sm overflow-hidden w-32 h-4 rounded-3xl border-gray-200 border-2	"
-             id="progress">
+            </div>
+            <!--todo : add dynamic answers here-->
+            <div class="space-y-2 flex flex-col justify-stretch" id="answers">
+            </div>
+            <div class="mt-6 mx-auto bg-white shadow-sm overflow-hidden w-32 h-4 rounded-3xl border-gray-200 border-2	"
+                id="progress">
                 <span class="bg-indigo-500 h-full block rounded-3xl w-0">
                 </span>
+            </div>
         </div>
-    </div>
-    <div class="hidden py-4 px-8 w-full space-y-4 flex flex-col justify-between" id="result-container">
-        <h2 class="text-center font-bold uppercase text-gray-900 text-4xl">Your result is :</h2>
-        <p class="text-center font-thin text-3xl text-gray-400"><span id="result_percentage"></span>%</p>
-        <img alt="" class="w-20 h-20 object-cover mx-auto" id="emotion-emoji" src="images/1.png">
-        <div class="flex justify-center items-center space-x-2">
-            <button class="btn btn-primary" id="save">save my score</button>
-            <button class="btn btn-secondary" id="reload">Play again</button>
+        <div class="hidden py-4 px-8 w-full space-y-4 flex flex-col justify-between" id="result-container">
+            <h2 class="text-center font-bold uppercase text-gray-900 text-4xl">Your result is :</h2>
+            <p class="text-center font-thin text-3xl text-gray-400"><span id="result_percentage"></span>%</p>
+            <img alt="" class="w-20 h-20 object-cover mx-auto" id="emotion-emoji" src="images/PNG/1.png">
+            <div class="flex justify-center items-center space-x-2">
+                <button class="btn btn-primary" id="save">save my score</button>
+                <button class="btn btn-secondary" id="reload">Play again</button>
+            </div>
         </div>
-    </div>
-    <div class="hidden py-4 px-8 w-full space-y-4 flex flex-col justify-between" id="save_score">
-        <label class="text-center font-bold uppercase text-gray-900 text-4xl" for="input_score">Your name :</label>
-        <input class="form-input px-4 py-3" id="input_score" placeholder="Username" type="email">
-        <div class="text-red-400 text-small font-thin" id="error_input"></div>
-        <div class="flex justify-center items-center space-x-2">
-            <button class="btn btn-primary" id="submit">Save</button>
-            <button class="btn btn-secondary" id="cancel">Cancel</button>
+        <div class="hidden py-4 px-8 w-full space-y-4 flex flex-col justify-between" id="save_score">
+            <label class="text-center font-bold uppercase text-gray-900 text-4xl" for="input_score">Your name :</label>
+            <input class="form-input px-4 py-3" id="input_score" placeholder="Username" type="email">
+            <div class="text-red-400 text-small font-thin" id="error_input"></div>
+            <div class="flex justify-center items-center space-x-2">
+                <button class="btn btn-primary" id="submit">Save</button>
+                <button class="btn btn-secondary" id="cancel">Cancel</button>
+            </div>
         </div>
-    </div>
-    <div class="hidden p-8 w-full space-y-4 flex flex-col justify-between max-h-104 overflow-y-auto"
-         id="saved_score_container">
-        <h2 class="text-center font-bold uppercase text-gray-900 text-4xl mb-4">Saved Score :</h2>
-    </div>
-    <div class="hidden py-4 px-8" id="login_container">
-        <h1 class="text-center uppercase text-4xl font-bold mt-4 text-gray-900">welcome again</h1>
-        <form class="py-4 px-8 w-full space-y-4 flex flex-col justify-between" id="form_login">
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                    Username
-                </label>
-                <input
+        <div class="hidden p-8 w-full space-y-4 flex flex-col justify-between max-h-104 overflow-y-auto"
+            id="saved_score_container">
+            <h2 class="text-center font-bold uppercase text-gray-900 text-4xl mb-4">Saved Score :</h2>
+        </div>
+        <div class="hidden py-4 px-8" id="login_container">
+            <h1 class="text-center uppercase text-4xl font-bold mt-4 text-gray-900">welcome again</h1>
+            <form class="py-4 px-8 w-full space-y-4 flex flex-col justify-between" id="form_login">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                        Username
+                    </label>
+                    <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="username" name="username" placeholder="Username" type="text">
-            </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                    Password
-                </label>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        Password
+                    </label>
 
-                <!--                <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"-->
-                <input
+                    <!--                <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"-->
+                    <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                         id="password" name="password" placeholder="******************" type="password">
-                <p class="hidden text-red-500 text-xs italic">Please choose a password.</p>
-            </div>
-            <div class="flex items-center justify-between">
-                <button
+                    <p class="hidden text-red-500 text-xs italic">Please choose a password.</p>
+                </div>
+                <div class="flex items-center justify-between">
+                    <button
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="submit">
-                    Sign In
-                </button>
-                <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-                    Forgot Password?
-                </a>
-            </div>
-        </form>
+                        Sign In
+                    </button>
+                    <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                        Forgot Password?
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-<!--will be hidden-->
-<div class="bg-white h-full w-full grid grid-cols-dashboard-column-guide grid-rows-dashboard-row-guide gap-x-10"
-     id="admin_dashboard">
-    <aside class="row-span-full col-span-1 flex flex-col py-4 px-6 bg-indigo-500 justify-between sidebar shadow-lg">
-        <div class="logo w-full">
-            <svg class="fill-current w-20 h-20 object-fit mx-auto">
-                <use href="images/SVG/sprite.svg#logo"></use>
-            </svg>
-        </div>
-        <ul class="flex flex-col gap-8 sidebar__menu">
-            <li>
-                <svg>
-                    <use href="images/SVG/sprite.svg#dashboard"></use>
+    <!--will be hidden-->
+    <div class="hidden bg-white h-full w-full grid grid-cols-dashboard-column-guide grid-rows-dashboard-row-guide gap-x-10"
+        id="admin_dashboard">
+        <aside class="row-span-full col-span-1 flex flex-col py-4 px-6 bg-indigo-500 justify-between sidebar shadow-lg">
+            <div class="logo w-full">
+                <svg class="fill-current w-20 h-20 object-fit mx-auto">
+                    <use href="images/SVG/sprite.svg#logo"></use>
                 </svg>
-                <span>Dashboard</span>
-            </li>
-            <li>
-                <svg>
-                    <use href="images/SVG/sprite.svg#messages"></use>
-                </svg>
-                <span>message</span>
-            </li>
-            <li>
-                <svg>
-                    <use href="images/SVG/sprite.svg#test"></use>
-                </svg>
-                <span>assignment</span>
-            </li>
-            <li>
-                <svg>
-                    <use href="images/SVG/sprite.svg#group"></use>
-                </svg>
-                <span>Students</span>
-            </li>
-            <li id="subject">
-                <svg>
-                    <use href="images/SVG/sprite.svg#subject"></use>
-                </svg>
-                <span>Subjects</span>
-            </li>
-            <li>
-                <svg class="fill-current text-white w-12 h-12">
-                    <use href="images/SVG/sprite.svg#analysis"></use>
-                </svg>
-                Statistics
-            </li>
-        </ul>
-        <div
-                class="logout flex items-center text-white bg-indigo-400 rounded-lg cursor-pointer py-1 px-2 hover:bg-indigo-600 active:bg-indigo-700 transition">
-            <!--            todo : dynamic source-->
-            <img alt="man face"
-                 class="rounded-full w-12 h-12 object-cover" src="https://www.pngkey.com/png/full/65-658471_happy-man-png.png">
-            <div>
-                <!--            todo : dynamic name-->
-                <div class="name">
-                    othmane kahtal
-                </div>
-                <!--            todo : dynamic email-->
-                <div class="email text-sm">
-                    contact@othmane.me
-                </div>
             </div>
-        </div>
-    </aside>
-    <header class="flex justify-end px-8 py-6">
-        <nav class="navbar flex items-center">
-            <ul>
+            <ul class="flex flex-col gap-8 sidebar__menu">
+                <li>
+                    <svg>
+                        <use href="images/SVG/sprite.svg#dashboard"></use>
+                    </svg>
+                    <span>Dashboard</span>
+                </li>
                 <li>
                     <svg>
                         <use href="images/SVG/sprite.svg#messages"></use>
                     </svg>
+                    <span>message</span>
                 </li>
                 <li>
                     <svg>
-                        <use href="images/SVG/sprite.svg#notification"></use>
+                        <use href="images/SVG/sprite.svg#test"></use>
                     </svg>
+                    <span>assignment</span>
                 </li>
                 <li>
                     <svg>
-                        <use href="images/SVG/sprite.svg#setting"></use>
+                        <use href="images/SVG/sprite.svg#group"></use>
                     </svg>
+                    <span>Students</span>
+                </li>
+                <li id="subject">
+                    <svg>
+                        <use href="images/SVG/sprite.svg#subject"></use>
+                    </svg>
+                    <span>Subjects</span>
+                </li>
+                <li>
+                    <svg class="fill-current text-white w-12 h-12">
+                        <use href="images/SVG/sprite.svg#analysis"></use>
+                    </svg>
+                    Statistics
                 </li>
             </ul>
-        </nav>
-    </header>
-    <main class="pr-8 pb-8 w-full h-full flex flex-col gap-y-8 bg-gray-50">
-        <div class="bg-white px-8 py-6 shadow-lg rounded-lg flex justify-between items-center" id="welcome">
-            <div>
-                <h2 class="text-gray-900 font-bold text-3xl pb-4">
-                    <!--            todo : you need to add welcome message here-->
-                    Hello Again Mr. Othmane
-                </h2>
-                <div class="text-gray-500">
-                    You have a 12 new notification , you will check it
+            <div
+                class="logout flex items-center text-white bg-indigo-400 rounded-lg cursor-pointer py-1 px-2 hover:bg-indigo-600 active:bg-indigo-700 transition">
+                <!--            todo : dynamic source-->
+                <img alt="man face" class="rounded-full w-12 h-12 object-cover"
+                    src="https://www.pngkey.com/png/full/65-658471_happy-man-png.png">
+                <div>
+                    <!--            todo : dynamic name-->
+                    <div class="name">
+                        othmane kahtal
+                    </div>
+                    <!--            todo : dynamic email-->
+                    <div class="email text-sm">
+                        contact@othmane.me
+                    </div>
                 </div>
             </div>
-            <div class='w-20 h-20 object-cover'>
+        </aside>
+        <header class="flex justify-end px-8 py-6">
+            <nav class="navbar flex items-center">
+                <ul>
+                    <li>
+                        <svg>
+                            <use href="images/SVG/sprite.svg#messages"></use>
+                        </svg>
+                    </li>
+                    <li>
+                        <svg>
+                            <use href="images/SVG/sprite.svg#notification"></use>
+                        </svg>
+                    </li>
+                    <li>
+                        <svg>
+                            <use href="images/SVG/sprite.svg#setting"></use>
+                        </svg>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main class="pr-8 pb-8 w-full h-full flex flex-col gap-y-8 bg-gray-50">
+            <div class="bg-white px-8 py-6 shadow-lg rounded-lg flex justify-between items-center" id="welcome">
+                <div>
+                    <h2 class="text-gray-900 font-bold text-3xl pb-4">
+                        <!--            todo : you need to add welcome message here-->
+                        Hello Again Mr. Othmane
+                    </h2>
+                    <div class="text-gray-500">
+                        You have a 12 new notification , you will check it
+                    </div>
+                </div>
+                <div class='w-20 h-20 object-cover'>
+                </div>
+            </div>
+            <div class="hidden" id="main-dashboard">
+            </div>
+            <div class="hidden" id="main-message">
+            </div>
+            <div class="hidden" id="main-assignment">
+            </div>
+            <div class="hidden w-full h-full bg-white rounded-lg shadow-lg px-8 py-6" id="main-subjects">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-gray-900 font-bold text-3xl pb-4">Subjects :</h2>
+                    <a class="btn btn-primary lowercase" id="add_subject">
+                        add subject
+                    </a>
+                </div>
+                <div id="subjects-container" class="flex flex-col gap-y-4">
+                </div>
+            </div>
+            <div class="hidden" id="main-statistics">
+            </div>
+        </main>
+    </div>
+    <div
+        class="hidden blur-layer absolute w-screen h-screen bg-gray-800 bg-opacity-25  backdrop-filter backdrop-blur-md flex items-center justify-center">
+        <div class="w-1/2 rounded-lg px-8 py-10 bg-white shadow-lg relative">
+            <svg class="cursor-pointer w-6 h-6 current-fill text-gray-800 absolute top-4 right-4 close-icon">
+                <use href="./images/SVG/sprite.svg#cancel"></use>
+            </svg>
+            <div class="hidden add_subject">
+                <h2 class="text-center text-gray-900 text-2xl">Add new subject :</h2>
+                <form action="" id="add_subject_form" class="mt-6">
+                    <div class="flex gap-y-4 flex-col mb-6">
+                        <label for="title" class="block text-gray-700 text-sm font-bold">Subject title:</label>
+                        <input type="text"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="title" placeholder="name" name='title'>
+                    </div>
+                    <p id='title_sub_error' class="text-red-500 text-xs transform -translate-y-3 italic"></p>
+                    <div class="flex gap-y-4 flex-col mb-6">
+                        <label for="max" class="block text-gray-700 text-sm font-bold">Maximum score:</label>
+                        <input type="Number"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="max" placeholder="Maximum score" name="max">
+                    </div>
+                    <p id='max_sub_error' class="text-red-500 text-xs transform -translate-y-3 italic"></p>
+                    <div class="flex gap-y-4 flex-col mb-6">
+                        <label for="min" class="block text-gray-700 text-sm font-bold">Minimum score:</label>
+                        <input type="Number" name="min"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="min" placeholder="Minimum score">
+                    </div>
+                    <p id='min_sub_error' class="text-red-500 text-xs transform -translate-y-3 italic"></p>
+                    <div class="flex justify-end gap-4">
+                        <button class="btn btn-primary lowercase" type="submit">
+                            add subject
+                        </button>
+                        <button type="button" class="btn btn-secondary lowercase btn_cancel">cancel</button>
+                    </div>
+                </form>
+            </div>
+            <div class="hidden add_sub_subject">
+                <form id="add_sub_subject_form">
+                    <div class="flex gap-y-4 flex-col mb-6">
+                        <label for="title_Sub" class="block text-gray-700 text-sm font-bold">Subject title:</label>
+                        <input type="text"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="title_Sub" placeholder="name" name='title'>
+                    </div>
+                    <p id='title_sub_error_Sub' class="text-red-500 text-xs transform -translate-y-3 italic"></p>
+                    <div class="flex gap-y-4 flex-col mb-6">
+                        <label for="max_Sub" class="block text-gray-700 text-sm font-bold">Maximum score:</label>
+                        <input type="Number"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="max_Sub" placeholder="Maximum score" name="max">
+                    </div>
+                    <p id='max_sub_error_Sub' class="text-red-500 text-xs transform -translate-y-3 italic"></p>
+                    <div class="flex gap-y-4 flex-col mb-6">
+                        <label for="min_sub" class="block text-gray-700 text-sm font-bold">Minimum score:</label>
+                        <input type="Number" name="min"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="min_sub" placeholder="Minimum score">
+                    </div>
+                    <p id='min_sub_error_Sub' class="text-red-500 text-xs transform -translate-y-3 italic"></p>
+                    <div class="flex justify-end gap-4">
+                        <button class="btn btn-primary lowercase" type="submit">
+                            add subject
+                        </button>
+                        <button type="button" class="btn btn-secondary lowercase btn_cancel">cancel</button>
+                    </div>
+                </form>
+            </div>
+            <div class="hidden update_subject">
+                <h2 class="text-center text-gray-900 text-2xl">Add new subject :</h2>
+                <form action="" id="update_subject_form" class="mt-6">
+                    <div class="flex gap-y-4 flex-col mb-6">
+                        <label for="title_Sub_update" class="block text-gray-700 text-sm font-bold">Subject
+                            title:</label>
+                        <input type="text"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="title_Sub_update" placeholder="name" name='title'>
+                    </div>
+                    <p id='title_sub_update_error' class="text-red-500 text-xs transform -translate-y-3 italic"></p>
+                    <div class="flex gap-y-4 flex-col mb-6">
+                        <label for="max_update" class="block text-gray-700 text-sm font-bold">Maximum score:</label>
+                        <input type="Number"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="max_update" placeholder="Maximum score" name="max">
+                    </div>
+                    <p id='max_sub_update_error' class="text-red-500 text-xs transform -translate-y-3 italic"></p>
+                    <div class="flex gap-y-4 flex-col mb-6">
+                        <label for="min_update" class="block text-gray-700 text-sm font-bold">Minimum score:</label>
+                        <input type="Number" name="min"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="min_update" placeholder="Minimum score">
+                    </div>
+                    <p id='min_sub_update_error' class="text-red-500 text-xs transform -translate-y-3 italic"></p>
+                    <div class="flex justify-end gap-4">
+                        <button class="btn btn-primary lowercase" type="submit">
+                            add subject
+                        </button>
+                        <button type="button" class="btn btn-secondary lowercase btn_cancel">cancel</button>
+                    </div>
+                </form>
+            </div>
+            <div class="hidden update_sub_subject">
+                <form id="update_sub_subject_form">
+                    <div class="flex gap-y-4 flex-col mb-6">
+                        <label for="title_sub_sub_update" class="block text-gray-700 text-sm font-bold">Subject
+                            title:</label>
+                        <input type="text"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="title_sub_sub_update" placeholder="name" name='title'>
+                    </div>
+                    <p id='title_sub_sub_error' class="text-red-500 text-xs transform -translate-y-3 italic"></p>
+                    <div class="flex gap-y-4 flex-col mb-6">
+                        <label for="max_Sub_update" class="block text-gray-700 text-sm font-bold">Maximum score:</label>
+                        <input type="Number"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="max_Sub_update" placeholder="Maximum score" name="max">
+                    </div>
+                    <p id='max_sub_error_sub_sub' class="text-red-500 text-xs transform -translate-y-3 italic"></p>
+                    <div class="flex gap-y-4 flex-col mb-6">
+                        <label for="min_sub_sub" class="block text-gray-700 text-sm font-bold">Minimum score:</label>
+                        <input type="Number" name="min"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="min_sub_sub" placeholder="Minimum score">
+                    </div>
+                    <p id='min_sub_error_sub_sub' class="text-red-500 text-xs transform -translate-y-3 italic"></p>
+                    <div class="flex justify-end gap-4">
+                        <button class="btn btn-primary lowercase" type="submit">
+                            add subject
+                        </button>
+                        <button type="button" class="btn btn-secondary lowercase btn_cancel">cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="hidden" id="main-dashboard">
-        </div>
-        <div class="hidden" id="main-message">
-        </div>
-        <div class="hidden" id="main-assginment">
-        </div>
-        <div class="hidden w-full h-full bg-white rounded-lg shadow-lg px-8 py-6" id="main-subjects">
-            <h2 class="text-gray-900 font-bold text-3xl pb-4">Subjects :</h2>
-            <div  id="subjects-container" class="flex flex-col gap-y-4">
-
-            </div>
-        </div>
-        <div class="hidden" id="main-statistics">
-        </div>
-    </main>
-</div>
+    </div>
 </body>
 
 </html>
